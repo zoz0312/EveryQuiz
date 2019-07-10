@@ -18,6 +18,7 @@
           Welcome to the Vuetify + Nuxt.js template
         </v-card-title>
         <v-card-text>
+          <button v-on:click="getInfo">GET INFO</button>
           <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
           <p>
             For more information on Vuetify, check out the <a
@@ -81,10 +82,25 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import axios from 'axios'
 import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
 
+Vue.prototype.$http = axios
+
 export default {
+  methods: {
+    getInfo: function () {
+      // using JSONPlaceholder
+      this.$http.get('http://127.0.0.1:3000/q1')
+      .then((result) => {
+        console.log('result',result.data)
+      }).catch( error => {
+        console.log('error',error)
+      });
+    }
+  },
   components: {
     Logo,
     VuetifyLogo
