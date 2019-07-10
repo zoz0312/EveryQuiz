@@ -3,6 +3,8 @@ const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 const app = express()
 
+var bodyParser = require('body-parser')
+
 const multiChose = require('./quiz/multi_chose')
 
 // Import and Set Nuxt.js options
@@ -16,7 +18,12 @@ app.all('*', function(req, res, next) {
   next();
 });
 
-app.use('/q1', multiChose)
+app.use( bodyParser.json() )
+app.use( bodyParser.urlencoded({
+  extended: true
+}) )
+
+app.use('/multiChose', multiChose)
 
 async function start() {
   // Init Nuxt.js
@@ -34,7 +41,6 @@ async function start() {
 
   // Give nuxt middleware to express
   app.use(nuxt.render)
-
   // Listen the server
   app.listen(port, host)
   consola.ready({
