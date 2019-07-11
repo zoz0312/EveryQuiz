@@ -6,15 +6,17 @@
         alt="Vuetify.js"
         class="mb-5"
       >
-       <v-btn
-          color="primary"
-          flat
-          nuxt
-          @click="getQuiz"
-        >
-          Multi Chose Quiz
-        </v-btn>
-      <Question v-if="quizItems.length != 0" v-bind:propsdata="quizItems"></question>
+      <v-btn
+        color="primary"
+        flat
+        nuxt
+        @click="getQuiz"
+      >
+        Multi Chose Quiz
+      </v-btn>
+      <v-container fluid>
+        <Question v-if="quizItems.length != 0" v-bind:propsdata="quizItems"></question>
+      </v-container>
     </v-flex>
   </v-layout>
 </template>
