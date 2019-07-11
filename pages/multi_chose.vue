@@ -14,7 +14,7 @@
       >
         Multi Chose Quiz
       </v-btn>
-      <v-container fluid>
+      <v-container fluid grid-list-lg>
         <Question v-if="quizItems.length != 0" v-bind:propsdata="quizItems"></question>
       </v-container>
     </v-flex>

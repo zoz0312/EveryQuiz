@@ -1,21 +1,23 @@
 <template>
   <transition-group name="quiz-multi">
-    <div v-for="(val,idx) in propsdata" :key="idx" class="q-item-box">
-      <div>
-        {{ propsdata[idx].question }}
-      </div>
-      <v-radio-group :v-model="'radio'+idx" :mandatory="false">
-        <div v-for="(quizItem, idx2) in val.items" :key="quizItem" class="multi-contain shadow">
-          <!-- <div class="q-box">
-            <div class="q-input"><input type="radio" name="quest"></div>
-            <div class="q-text">{{ quizItem }}</div>
-          </div> -->
-          <div class="q-input">
-            <v-radio :label="quizItem" :value="idx+'-'+idx2"></v-radio>
-          </div>
-        </div>
-      </v-radio-group>
-    </div>
+    <v-layout row wrap v-for="(val,idx) in propsdata" :key="idx" class="q-item-box">
+      <v-flex xs12>
+        <v-card  color="blue-grey darken-2" class="white--text">
+          <v-card-title primary-title>
+            {{ propsdata[idx].question }}
+          </v-card-title>
+          <v-card-actions>
+            <v-radio-group :v-model="'radio'+idx" :mandatory="false">
+              <div v-for="(quizItem, idx2) in val.items" :key="quizItem" class="multi-contain shadow">
+                <div class="q-input">
+                  <v-radio :label="quizItem" :value="idx+'-'+idx2"></v-radio>
+                </div>
+              </div>
+            </v-radio-group>
+          </v-card-actions>
+        </v-card>
+      </v-flex>
+    </v-layout>
   </transition-group>
 </template>
 
@@ -31,9 +33,6 @@ export default{
 </script>
 
 <style>
-.q-item-box{
-  border: 2px solid #cccccc;
-}
 .multi-contain {
   min-height: 50px;
   height: 50px;
