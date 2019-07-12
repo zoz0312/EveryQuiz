@@ -15,16 +15,14 @@
         Multi Chose Quiz
       </v-btn>
       <v-container fluid grid-list-lg>
-        <multiChose v-if="quizItems.length != 0" v-bind:propsdata="quizItems"></multiChose>
+        <Bundle v-if="quizItems.length != 0" v-bind:propsdata="quizItems"></Bundle>
       </v-container>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
-// import Logo from '~/components/Logo.vue'
-// import VuetifyLogo from '~/components/VuetifyLogo.vue'
-import multiChose from '../layouts/quiz/multi_chose';
+import Bundle from '../layouts/quiz/bundle';
 
 export default {
   data(){
@@ -45,6 +43,7 @@ export default {
       // using JSONPlaceholder
       this.$http.post('/quizBundle',obj)
       .then((result) => {
+        console.log(result.data);
         this.quizItems = result.data.bundle
       }).catch( error => {
         console.log('error',error)
@@ -65,11 +64,7 @@ export default {
     }
   },
   components: {
-    // Logo,
-    // VuetifyLogo
-  },
-  components: {
-    multiChose: multiChose
+    Bundle: Bundle
   }
 }
 </script>
