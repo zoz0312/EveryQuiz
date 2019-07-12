@@ -20,7 +20,7 @@
             color="primary"
             flat
             nuxt
-            to="/multi_chose"
+            to="/quiz"
           >
             Multi Chose Quiz
           </v-btn>

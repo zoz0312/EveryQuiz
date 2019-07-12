@@ -10,12 +10,12 @@
         color="primary"
         flat
         nuxt
-        @click="getQuiz"
+        @click="getQuizBundle"
       >
         Multi Chose Quiz
       </v-btn>
       <v-container fluid grid-list-lg>
-        <Question v-if="quizItems.length != 0" v-bind:propsdata="quizItems"></question>
+        <multiChose v-if="quizItems.length != 0" v-bind:propsdata="quizItems"></multiChose>
       </v-container>
     </v-flex>
   </v-layout>
@@ -24,27 +24,41 @@
 <script>
 // import Logo from '~/components/Logo.vue'
 // import VuetifyLogo from '~/components/VuetifyLogo.vue'
-import Question from '../layouts/quiz/question';
-
+import multiChose from '../layouts/quiz/multi_chose';
 
 export default {
   data(){
     return{
-      quizItems: []
+      quizItems: [],
+      type: '',
+      ans: []
     }
   },
   methods: {
-    getQuiz:  function () {
+    getQuizBundle: function() {
+      const act = 'getQuizBundle'
       const obj = {
-        'act':'multi_chose',
-        'id':1
+        act,
+        'id':1 //시험 고유 번호
       }
+      this.type = act
       // using JSONPlaceholder
-      this.$http.post('/multiChose',obj)
+      this.$http.post('/quizBundle',obj)
       .then((result) => {
-        console.log('result',result.data)
-        this.quizItems = result.data.data
-        console.log('quizItems',quizItems)
+        this.quizItems = result.data.bundle
+      }).catch( error => {
+        console.log('error',error)
+      });
+    },
+    checkAnswer: function() {
+      const act = 'checkAnswer'
+      const obj = {
+        type,
+        act
+      }
+      this.$http.post('/chkAns',obj)
+      .then((result) => {
+        //success
       }).catch( error => {
         console.log('error',error)
       });
@@ -55,7 +69,7 @@ export default {
     // VuetifyLogo
   },
   components: {
-    Question: Question
+    multiChose: multiChose
   }
 }
 </script>

@@ -6,6 +6,7 @@ const app = express()
 var bodyParser = require('body-parser')
 
 const multiChose = require('./quiz/multi_chose')
+const quizBundle = require('./quiz/quiz_bundle')
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
@@ -24,6 +25,7 @@ app.use( bodyParser.urlencoded({
 }) )
 
 app.use('/multiChose', multiChose)
+app.use('/quizBundle', quizBundle)
 
 async function start() {
   // Init Nuxt.js
