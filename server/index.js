@@ -4,7 +4,8 @@ const { Nuxt, Builder } = require('nuxt')
 const mongoose = require('mongoose')
 const app = express()
 
-var bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
+const autoIncrement = require('mongoose-auto-increment')
 
 const multiChose = require('./quiz/multi_chose')
 const quizBundle = require('./quiz/quiz_bundle')
@@ -36,7 +37,8 @@ db.once('open', function(){
     // CONNECTED TO MONGODB SERVER
     console.log("Connected to mongod server");
 });
-mongoose.connect('mongodb://172.17.123.240/mongodb_tutorial');
+const connect = mongoose.createConnection('mongodb://172.17.123.240/mongodb_tutorial');
+autoIncrement.initialize(connect);
 
 async function start() {
   // Init Nuxt.js

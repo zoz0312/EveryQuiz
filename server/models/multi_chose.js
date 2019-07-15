@@ -1,5 +1,6 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const autoIncrement = require('mongoose-auto-increment')
+const Schema = mongoose.Schema
 
 /*
     id : 고유값
@@ -8,10 +9,11 @@ var Schema = mongoose.Schema;
     type : 문제 과목 (영어,수학...)
 */
 var multiChoseSchema = new Schema({
-    id: Number,
     question: String,
     items: Array,
-    type: String
+    type: {type:String, default:''},
+    count: {type:Number, default:0}
 });
-
+autoIncrement.initialize(mongoose.connection);
+multiChoseSchema.plugin(autoIncrement.plugin, 'log');
 module.exports = mongoose.model('multi_chose', multiChoseSchema);
