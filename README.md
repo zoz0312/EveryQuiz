@@ -6,17 +6,23 @@
 
 ``` bash
 # install dependencies
-$ yarn install
+$ npm install
 
 # serve with hot reload at localhost:3000
-$ yarn dev
+$ npm run dev
 
 # build for production and launch server
-$ yarn build
-$ yarn start
+$ npm build
+$ npm start
 
 # generate static project
-$ yarn generate
+$ npm generate
 ```
+## Dev environments
+Vue + Vuetify
+Nuxt
+Express + MongoDB
+
+
 
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
