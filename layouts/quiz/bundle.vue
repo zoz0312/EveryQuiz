@@ -1,6 +1,6 @@
 <template>
   <transition-group name="quiz-multi">
-    <v-layout row wrap v-for="(val,idx) in propsdata" :key="idx" class="q-item-box" transition="scale-transition">
+    <v-layout row wrap v-for="val in propsdata" :key="val.no" class="q-item-box" transition="scale-transition">
       <multiChose :v-if="val.type === 'multi_chose'" 
         v-bind:propsdata="val"></multiChose>
       <!--
