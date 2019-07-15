@@ -32,7 +32,7 @@ router.post('/', function(req, res, next) {
 
 router.post('/save', function(req, res, next) {
   const schm = new multiChose();
-  schm._id = req.body.id;
+  //schm._id = req.body.id;
   schm.question = req.body.question;
   schm.items = req.body.items;
   schm.type = req.body.type;

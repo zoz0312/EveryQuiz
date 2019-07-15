@@ -37,14 +37,16 @@ db.once('open', function(){
     // CONNECTED TO MONGODB SERVER
     console.log("Connected to mongod server");
 });
-const connect = mongoose.createConnection('mongodb://172.17.123.240/mongodb_tutorial');
+const connect = mongoose.createConnection('mongodb://localhost/everyquiz', { useNewUrlParser: true });
 autoIncrement.initialize(connect);
 
 async function start() {
   // Init Nuxt.js
   const nuxt = new Nuxt(config)
 
-  const { host, port } = nuxt.options.server
+  //const { host, port } = nuxt.options.server
+  const host = '0.0.0.0'
+  const port = '3000'
 
   // Build only in dev mode
   if (config.dev) {
