@@ -16,14 +16,14 @@
         <v-card-title class="headline">
           Welcome to EveryQuiz
         </v-card-title>
-        <v-btn
+        <!-- <v-btn
             color="primary"
             flat
             nuxt
             to="/quiz"
           >
             Multi Chose Quiz
-          </v-btn>
+          </v-btn> -->
         <v-card-text>
           <button v-on:click="getInfo">GET INFO</button>
           <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
@@ -50,6 +50,41 @@
         </v-card-actions>
       </v-card>
     </v-flex>
+    <v-card class="w-100 mt-5">
+      <v-toolbar color="teal">
+        <v-toolbar-title>Menu</v-toolbar-title>
+      </v-toolbar>
+
+      <v-list light>
+        <template v-for="(item, index) in items">
+          <v-list-tile
+            v-if="item.action"
+            :key="item.title"
+            :to="item.to"
+          >
+            <v-list-tile-action>
+              <v-icon>{{ item.action }}</v-icon>
+            </v-list-tile-action>
+
+            <v-list-tile-content>
+              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+
+          <v-divider
+            v-else-if="item.divider"
+            :key="index"
+          ></v-divider>
+
+          <v-subheader
+            v-else-if="item.header"
+            :key="item.header"
+          >
+            {{ item.header }}
+          </v-subheader>
+        </template>
+      </v-list>
+    </v-card>
   </v-layout>
 </template>
 
@@ -62,6 +97,27 @@ import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
 
 export default {
+  data () {
+    return {
+      items: [
+        { header: '문제 풀기' },
+        {
+          action: 'info',
+          title: '객관식',
+          to: '/quiz'
+        },
+        { divider: true },
+        { 
+          header: '문제 관리'
+        },
+        {
+          action: 'label',
+          title: '_객관식_',
+          to: '/manage'
+        }
+      ]
+    }
+  },
   methods: {
     getInfo: function () {
       // using JSONPlaceholder
@@ -79,3 +135,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.w-100 {
+ width: 100%;
+}
+</style>
