@@ -9,7 +9,7 @@
         alt="Vuetify.js"
         class="mb-5 d-inline-block"
       >
-      <v-container fluid grid-list-lg>
+      <v-container>
         <v-btn color="primary" @click="getQuizBundle">
           Multi Chose Quiz
         </v-btn>

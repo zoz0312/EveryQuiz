@@ -1,9 +1,9 @@
 <template>
-  <transition name="quiz-multi">
+  <v-layout column wrap>
     <v-data-table
       :headers="headers"
       :items="propsdata"
-      class="elevation-1"
+      class="elevation-1 mb-3 fadeIn animated"
     >
       <template v-slot:items="propsdata">
         <tr @click="showDetail">
@@ -12,7 +12,8 @@
         </tr>
       </template>
     </v-data-table>
-  </transition>
+    <multiChose v-if="detail.type === 'multi_chose'" v-bind:propsdata="detail"></multiChose>
+  </v-layout>
 </template>
 
 <script>
@@ -23,7 +24,8 @@ export default{
         headers: [
           { text: '문제', value: 'question', align: 'center' },
           { text: '문항수', value: 'count', align: 'center', sortable: false }
-        ]
+        ],
+        detail: {}
       }
   },
   methods: {
@@ -37,7 +39,7 @@ export default{
       this.$http.post('/multiChose/detail',obj)
       .then((result) => {
         console.log(result.data.data);
-        this.quizItems = result.data.data
+        this.detail = result.data.data
       }).catch( error => {
         console.log('error',error)
       });

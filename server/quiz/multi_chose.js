@@ -98,6 +98,7 @@ router.post('/detail', function(req,res){
       rtn = {
         key:'1',
         data:{
+          type: 'multi_chose',
           question: "!!question!!",
           items: ['web','is','free']
         }
