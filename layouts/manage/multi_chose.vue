@@ -1,20 +1,19 @@
 <template>
   <v-layout row wrap class="q-item-box bounceInRight animated">
     <v-flex xs12>
-      <v-card color="blue lighten-5 darken-2" class="white--text">
-        <v-card-title primary-title>
+      <v-card color="#26c6da" class="white--text">
+        <v-card-title secondary-title>
           {{ propsdata.question }}
         </v-card-title>
         <v-card-actions>
           <v-radio-group :v-model="'radio'" :mandatory="false">
             <div v-for="(q_val,idx) in propsdata.items" :key="idx" class="multi-contain shadow">
-              <div class="q-input">
-                <v-radio :label="q_val" :value="'-'+idx"></v-radio>
-              </div>
+              <v-text-field :label="'문항'+idx" :value="q_val"></v-text-field>
             </div>
           </v-radio-group>
         </v-card-actions>
       </v-card>
+      
     </v-flex>
   </v-layout>
 </template>

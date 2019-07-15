@@ -21,9 +21,6 @@ module.exports = {
       },{
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
-      },{
-        rel: 'stylesheet',
-        href: '/css/animate.css'
       }
     ]
   },
@@ -35,6 +32,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    '~/css/animate.css',
+    '~/css/common.css'
   ],
   /*
   ** Plugins to load before mounting the App
