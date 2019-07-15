@@ -1,6 +1,7 @@
 const express = require('express')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
+const mongoose = require('mongoose')
 const app = express()
 
 var bodyParser = require('body-parser')
@@ -24,8 +25,18 @@ app.use( bodyParser.urlencoded({
   extended: true
 }) )
 
+/* Route */
 app.use('/multiChose', multiChose)
 app.use('/quizBundle', quizBundle)
+
+/* DB */
+var db = mongoose.connection;
+db.on('error', console.error);
+db.once('open', function(){
+    // CONNECTED TO MONGODB SERVER
+    console.log("Connected to mongod server");
+});
+mongoose.connect('mongodb://172.17.123.240/mongodb_tutorial');
 
 async function start() {
   // Init Nuxt.js

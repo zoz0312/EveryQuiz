@@ -1,7 +1,7 @@
 <template>
-  <v-layout row wrap class="q-item-box">
+  <v-layout row wrap class="q-item-box fadeInUp animated">
     <v-flex xs12>
-      <v-card  color="blue-grey darken-2" class="white--text">
+      <v-card  color="blue lighten-5 darken-2" class="white--text">
         <v-card-title primary-title>
           {{ propsdata.title }}
         </v-card-title>
@@ -36,7 +36,7 @@ export default{
   border-radius: 5px;
   text-align: left;
 }
-.q-item-box{
+.q-item-box {
   margin-bottom: 1rem !important;
 }
 .q-input,

@@ -30,12 +30,12 @@ router.post('/', function(req, res, next) {
             no: 2,
             type: 'multi_chose',
             title: "!!question2222",
-            items: ['try','test','anmal']
+            items: ['O','X']
           },{
             no: 3,
             type: 'multi_chose',
             title: "다음 동물로 바른것은?",
-            items: ['사람','잉어','금붕어']
+            items: ['사람','잉어','금붕어','갸루상']
           }
         ]
       }

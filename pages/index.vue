@@ -56,10 +56,10 @@
 <script>
 import Vue from 'vue'
 import axios from 'axios'
+Vue.prototype.$http = axios
+
 import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
-
-Vue.prototype.$http = axios
 
 export default {
   methods: {
