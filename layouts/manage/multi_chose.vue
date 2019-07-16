@@ -1,26 +1,50 @@
 <template>
-  <v-layout row wrap class="q-item-box bounceInRight animated">
+  <v-layout column wrap class="q-item-box">
     <v-flex xs12>
-      <v-card color="#26c6da" class="white--text">
-        <v-card-title secondary-title>
-          {{ propsdata.question }}
-        </v-card-title>
-        <v-card-actions>
-          <v-radio-group :v-model="'radio'" :mandatory="false">
-            <div v-for="(q_val,idx) in propsdata.items" :key="idx" class="multi-contain shadow">
-              <v-text-field :label="'문항'+idx" :value="q_val"></v-text-field>
-            </div>
-          </v-radio-group>
-        </v-card-actions>
-      </v-card>
-      
+      <v-card-title class="q-title">{{ q_list.question }}</v-card-title>
+      <v-flex v-for="(q_val,idx) in q_list.items" :key="idx" class="multi-contain shadow mb-5">
+        <v-card color="#26c6da" class="white--text pt-1 bounceInRight animated">
+          <v-card-actions>
+            <v-text-field :label="'문항'+(idx+1)" :value="q_val" v-model="q_list.items[idx]"></v-text-field>
+            <v-icon class="icon-del" @click="delItem(idx)">delete</v-icon>
+          </v-card-actions>
+        </v-card>
+      </v-flex>
     </v-flex>
+    <v-btn color="#26c6da" class="btn-add bounceInRight animated" @click="addItem">문항 추가하기<v-icon>exposure_plus_1</v-icon></v-btn>
+    <v-btn color="#4caf50" class="btn-add bounceInRight animated" @click="">적용하기</v-btn>
+    <Alert v-bind:propsdata="q_alert"></Alert>
   </v-layout>
 </template>
 
 <script>
+import Alert from '../modal/alert'
+
 export default{
-  props: ['propsdata']
+  props: ['propsdata'],
+  data: function () {
+    return {
+      q_list: this.propsdata,
+      q_alert: false
+    }
+  },
+  methods: {
+    addItem: function() {
+      this.q_list.items.push('')
+    },
+    delItem: function( item_idx ) {
+      this.q_list.items.splice(item_idx,1)
+      this.q_alert = true
+      if( this.q_alert ){
+        setTimeout(()=>{
+          this.q_alert = false;
+        }, 800);
+      }
+    }
+  },
+  components:{
+    Alert: Alert
+  }
 }
 </script>
 
@@ -34,6 +58,9 @@ export default{
   /* background: white; */
   border-radius: 5px;
   text-align: left;
+}
+.q-title {
+  font-size: 1.5rem;
 }
 .q-item-box {
   margin-bottom: 1rem !important;
@@ -52,5 +79,15 @@ export default{
 }
 .q-text {
   font-size: 1.2rem;
+}
+.icon-del {
+  color: #FFFFFF;
+  cursor: pointer;
+}
+.icon-del:hover {
+  color: #F44336;
+}
+.btn-add {
+  margin: 6px 12px;
 }
 </style>
