@@ -37,8 +37,9 @@ db.once('open', function(){
     // CONNECTED TO MONGODB SERVER
     console.log("Connected to mongod server");
 });
-const connect = mongoose.createConnection('mongodb://122.36.104.135/everyquiz', { useNewUrlParser: true });
-autoIncrement.initialize(connect);
+// const connect = mongoose.createConnection('mongodb://localhost:27017/everyquiz', { useNewUrlParser: true });
+// autoIncrement.initialize(connect);
+mongoose.connect('mongodb://localhost:27017/everyquiz', { useNewUrlParser: true });
 
 async function start() {
   // Init Nuxt.js

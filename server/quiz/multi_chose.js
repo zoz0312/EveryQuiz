@@ -47,6 +47,27 @@ router.post('/save', function(req, res, next) {
   });
 });
 
+router.post('/test', function(req,res){
+  const schm = new multiChose();
+  //schm._id = req.body.id;
+  console.log("save post");
+  schm.question = 'qustion';
+  schm.items = ['text1','text2','text3','text4'];
+  schm.type = 'multi_chose';
+  multiChose.find({ question: 'qustion'}, (err, user) => {
+    console.log('user',user);
+    res.json({ user: user });
+  });
+  // schm.save(function(err){
+  //   if(err){
+  //     console.log('err',err);
+  //     return console.error(err);
+  //   }
+  //   console.log("save post 2-1")
+  // });
+  // console.log("save post3");
+  // res.json({result: 1});
+});
 router.post('/get', function(req,res){
   // multiChose.find(function(err, schm){
   //     if(err) return res.status(500).send({error: 'database failure'});

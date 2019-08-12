@@ -16,14 +16,14 @@
         <v-card-title class="headline">
           Welcome to EveryQuiz
         </v-card-title>
-        <!-- <v-btn
+        <v-btn
             color="primary"
             flat
             nuxt
-            to="/quiz"
+            @click="quiz_test"
           >
-            Multi Chose Quiz
-          </v-btn> -->
+            quiz_test
+          </v-btn>
         <v-card-text>
           <button v-on:click="getInfo">GET INFO</button>
           <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
@@ -124,6 +124,22 @@ export default {
       this.$http.get('http://127.0.0.1:3000/q1')
       .then((result) => {
         console.log('result',result.data)
+      }).catch( error => {
+        console.log('error',error)
+      });
+    },
+    quiz_test: function() {
+      const act = 'getQuizBundle'
+      const obj = {
+        act,
+        'id':1 //시험 고유 번호
+      }
+      this.type = act
+      // using JSONPlaceholder
+      this.$http.post('/multiChose/test',obj)
+      .then((result) => {
+        console.log(result.data);
+        this.quizItems = result.data.bundle
       }).catch( error => {
         console.log('error',error)
       });
