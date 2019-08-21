@@ -1,7 +1,13 @@
 <template>
   <v-layout column wrap class="q-item-box">
     <v-flex xs12>
-      <v-card-title class="q-title">{{ q_list.question }}</v-card-title>
+      <v-card-title class="q-title">
+        <v-text-field
+          label="문제 제목"
+          outlined
+          v-model="q_list.question"
+        ></v-text-field>
+      </v-card-title>
       <v-flex v-for="(q_val,idx) in q_list.items" :key="idx" class="multi-contain shadow mb-5">
         <v-card color="#26c6da" class="white--text pt-1 bounceInRight animated">
           <v-card-actions>
@@ -12,7 +18,7 @@
       </v-flex>
     </v-flex>
     <v-btn color="#26c6da" class="btn-add bounceInRight animated" @click="addItem">문항 추가하기<v-icon>exposure_plus_1</v-icon></v-btn>
-    <v-btn color="#4caf50" class="btn-add bounceInRight animated" @click="">적용하기</v-btn>
+    <v-btn color="#4caf50" class="btn-add bounceInRight animated" @click="applyItem">적용하기</v-btn>
     <Alert v-bind:propsdata="q_alert"></Alert>
   </v-layout>
 </template>
@@ -40,6 +46,21 @@ export default{
           this.q_alert = false;
         }, 800);
       }
+    },
+    applyItem: function() {
+      const act = 'multi_chose'
+      const obj = {
+        'question':this.q_list.question,
+        'items':this.q_list.items, 
+      }
+      
+      // using JSONPlaceholder
+      this.$http.post('/multiChose/save',obj)
+      .then((result) => {
+        console.log(result.data.result)
+      }).catch( error => {
+        console.log('error',error)
+      });
     }
   },
   components:{

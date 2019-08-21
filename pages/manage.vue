@@ -10,8 +10,12 @@
         class="mb-5 d-inline-block"
       >
       <v-container>
+        <h1>{{ now_type }}</h1>
         <v-btn color="primary" @click="getQuizBundle">
           Multi Chose Quiz
+        </v-btn>
+        <v-btn color="primary" @click="">
+          Add
         </v-btn>
         <Bundle v-bind:propsdata="quizItems"></Bundle>
       </v-container>
@@ -29,7 +33,8 @@ import Bundle from '../layouts/manage/bundle';
 export default {
   data(){
     return{
-      quizItems: []
+      quizItems: [],
+      now_type: ''
     }
   },
   methods: {
@@ -39,6 +44,7 @@ export default {
         act,
         'id':1 //시험 고유 번호
       }
+      this.now_type = act
       // using JSONPlaceholder
       this.$http.post('/multiChose/get',obj)
       .then((result) => {
